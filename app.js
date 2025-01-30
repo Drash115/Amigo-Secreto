@@ -1,7 +1,7 @@
 let lista = []
 //
 function cambiarEtiqueta(elemento, texto) {
-    let elementoHtml = document.querySelector(elemento)
+    let elementoHtml = document.getElementById(elemento)
     if (elementoHtml) {
         elementoHtml.innerHTML = texto
     } else {
@@ -11,12 +11,12 @@ function cambiarEtiqueta(elemento, texto) {
 //funcion para agregar amigos
 function agregarAmigo(){
 
-    cambiarEtiqueta("h2","Digite el nombre de sus amigos")
+    cambiarEtiqueta("encabezado","Digite el nombre de sus amigos")
 
     let amigo = document.querySelector("input").value
 //si la lista esta vacia, se elimina la etiqueta ul(esto para que no quede el mensaje de que no hay amigos)
     if (lista.length === 0) {
-        cambiarEtiqueta("ul", "")
+        cambiarEtiqueta("listaAmigos", "")
     }
 //verificar si el amigo ya está en la lista, si no lo esta se ingresa a la lista 
     if (amigo) {
@@ -38,16 +38,16 @@ function agregarAmigo(){
 function sortearAmigo(){
 //desactivar el boton de agregar amigos cuando se sortea
     document.getElementById("boton1").disabled = true;
-    cambiarEtiqueta("h2","Ya no se puede agregar más amigos, sortea a todos para volver a jugar")
+    cambiarEtiqueta("encabezado","Ya no se puede agregar más amigos, sortea a todos para volver a jugar")
 
         //genera un numero aleatorio para seleccionar un amigo de la lista
         let amigo = lista[Math.floor(Math.random() * lista.length)]
-        cambiarEtiqueta("ul", `Tu amigo secreto es: ${amigo}`)
+        cambiarEtiqueta("resultado", `Tu amigo secreto es: ${amigo}`)
         lista = lista.filter(persona => persona !== amigo)
 
         //si la lista esta vacia, se muestra un mensaje y se activa el boton de agregar amigos
         if (lista.length === 0) {
-            cambiarEtiqueta("ul", "No hay más amigos que sortear, agregá más amigos para seguir jugando")
+            cambiarEtiqueta("listaAmigos", "No hay más amigos que sortear, agregá más amigos para seguir jugando")
             document.getElementById("boton1").disabled = false
         }
 }
